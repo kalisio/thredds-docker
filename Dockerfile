@@ -60,7 +60,7 @@ RUN curl https://support.hdfgroup.org/ftp/HDF5/releases/${HDF5_VER%.*}/${HDF5_VE
 #netCDF4-c
 RUN export CPPFLAGS=-I/usr/local/include \
     LDFLAGS=-L/usr/local/lib && \
-    curl ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-c-${NETCDF_VERSION}.tar.gz | tar xz && \
+    curl -L https://github.com/Unidata/netcdf-c/archive/refs/tags/v${NETCDF_VERSION}.tar.gz | tar xz && \
     cd netcdf-c-${NETCDF_VERSION} && \
     ./configure --disable-dap-remote-tests --prefix=/usr/local && \
     make check && make install && ldconfig
